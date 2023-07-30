@@ -1,42 +1,19 @@
+# Import the necessary modules to create a turtle racing game.
+
 from turtle import Turtle, Screen
 import random
+from line import Line
 
+# Create the game screen.
 my_screen = Screen()
-# def move_forward():
-#     t.forward(10)
-#
-#
-# def move_back():
-#     t.back(10)
-#
-#
-# def counter_clock():
-#     t.left(10)
-#
-#
-# def clock_wise():
-#     t.right(10)
-#
-#
-# def pen_up():
-#     t.penup()
-#
-#
-# def pen_down():
-#     t.pendown()
-#
-#
-# def clear():
-#
-#     t.clear()
-#     t.penup()
-#     t.home()
 
-color = ['red', 'green', 'blue', 'yellow', 'orange', 'purple']
+# Color and y-coordinate lists for the turtles.
+color = ['red', 'green', 'blue', 'yellow', 'pink', 'purple']
 y_cor = [100, 60, 20, -20, -60, -100]
 turtle_list = []
 
 
+# Function to set the initial positions of the turtles.
 def start_position():
     for i in range(len(color)):
         new_turtle = Turtle()
@@ -47,6 +24,7 @@ def start_position():
         turtle_list.append(new_turtle)
 
 
+# Function to check if a turtle has won the race.
 def win(turtle):
     if turtle.pos()[0] >= 200:
         return True
@@ -54,61 +32,57 @@ def win(turtle):
         return False
 
 
+# Function to simulate the race and determine the winner.
 def race():
     winner = ''
-    isover = False
-    while not isover:
+    Over = False
+    while not Over:
         for turtles in turtle_list:
             if win(turtles):
-                isover = True
+                Over = True
                 winner = turtles.pencolor()
             turtles.fd(random.randint(0, 10))
 
     return winner
 
 
-def main():
-    line = Turtle()
-    line.hideturtle()
-    my_screen.setup(width=500, height=400)
-    my_screen.title('Turtle Race')
-    bandw = ['yellow', 'white']
+def show_message(message):
+    # Create a turtle to display the message
+    message_turtle = Turtle()
+    message_turtle.penup()
+    message_turtle.hideturtle()
+    message_turtle.goto(0, 0)
+    message_turtle.color('white')
+    message_turtle.write(message, align='center', font=('Arial', 20, 'normal'))
 
+
+# Function to execute the main game logic.
+def main():
+    endLine = Line(200, 150, 'white', 'green')
+    startLine = Line(-230, 150, 'yellow', 'red')
+
+
+    my_screen.setup(width=500, height=400)
+    my_screen.title('Turtle Race Bet')
+
+    # Get user input for the turtle they think will win the race.
     user_input = my_screen.textinput(title='Make Your Bet 🥷',
-                                     prompt='Which turtle would win the race ? 🤷 Enter a color: ').lower()
+                                     prompt='Which turtle would win the race ? 🤷 Enter a color: red,green,blue,'
+                                            'yellow,pink, or purple ').lower()
     start_position()
 
     my_screen.bgcolor('black')
-    line.penup()
-
-    line.goto(200, 150)
-    line.right(90)
-    line.width(10)
-    for i in range(10):
-        line.pendown()
-        if i % 2 == 0:
-            line.color(bandw[0])
-        else:
-            line.color(bandw[1])
-        line.fd(30)
-
+    endLine.draw()
+    startLine.draw()
+    # Start the race and determine the winner.
     won = race()
-    #
-    print(f'{won.upper()} won the race !!! 🥇')
+
     if won == user_input:
-        print('You won the best !!! 🏆')
+        show_message(f'{won.upper()} won the race !!! 🥇\nYou won the bet !!! 🏆')
+
     else:
-        print('You Loss🫣 !!!')
+        show_message(f'{won.upper()} won the race !!! 🥇\nYou Loss the bet🫣 !!!')
 
 
 main()
-
-# my_screen.listen()
-# my_screen.onkey(key='w', fun=move_forward)
-# my_screen.onkey(key='s', fun=move_back)
-# my_screen.onkey(key='a', fun=counter_clock)
-# my_screen.onkey(key='d', fun=clock_wise)
-# my_screen.onkey(key='u', fun=pen_up)
-# my_screen.onkey(key='f', fun=pen_down)
-# my_screen.onkey(key='c', fun=clear)
 my_screen.exitonclick()
