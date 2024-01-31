@@ -30,8 +30,7 @@ Welcome to the Turtle Race Bet Game! This is a simple and entertaining arcade-st
 9. Play Again: You can play the game again by running the script once more and experience the thrill of turtle racing and betting.
 
 ## Link To Video
-https://www.dropbox.com/scl/fi/cz33r47wb2vkrlmsxwgj5/race.mov?rlkey=i85kle7i74f45u2juamw6e99m&dl=0
-
+https://youtu.be/WptLyH5KzUQ
 ## Contribution
 
 If you'd like to contribute to this project, feel free to fork the repository, make improvements, and submit a pull request. I welcome any enhancements to make the Turtle Race Bet Game even more exciting and engaging.
